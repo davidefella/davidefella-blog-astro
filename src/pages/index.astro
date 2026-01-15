@@ -28,7 +28,7 @@ const formatDate = (date: Date) => {
     <section class="hero">
       <div class="hero-content">
         <p class="hero-wave">👋 Ciao, sono Davide</p>
-        <h1 class="hero-title">Dev freelance, parlo e scrivo di programmazione</h1>
+        <h1 class="hero-title">Lavoro, parlo e scrivo di programmazione</h1>
         <p class="hero-subtitle">
           Condivido appunti, codice e idee sul mondo tech. Bug inclusi.
         </p>
@@ -121,18 +121,19 @@ const formatDate = (date: Date) => {
   }
   
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    white-space: nowrap;
   }
   
   .hero-subtitle {
     font-size: 1.15rem;
     color: var(--text-secondary);
     margin-bottom: var(--space-xl);
-    max-width: 500px;
+    white-space: nowrap;
   }
   
   .btn-primary {
@@ -186,7 +187,7 @@ const formatDate = (date: Date) => {
   /* Content Grid */
   .content-grid {
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 1fr 400px;
     gap: var(--space-3xl);
     margin-bottom: var(--space-3xl);
   }
