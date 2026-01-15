@@ -5,9 +5,13 @@ import { Image } from 'astro:assets';
 import davidePhoto from '../assets/images/davide-fella.jpg';
 
 // Prendi gli ultimi 5 post
-const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const recentPosts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 5);
+
+// Raccogli tutti i tag unici
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('it-IT', {
@@ -40,21 +44,61 @@ const formatDate = (date: Date) => {
       </div>
     </section>
     
-    <!-- Recent Posts -->
-    <section class="posts-section">
-      <h2 class="section-title">Ultimi Articoli</h2>
-      <ul class="posts-list">
-        {recentPosts.map(post => (
-          <li class="post-item">
-            <a href={`/blog/${post.slug}`} class="post-link">
-              {post.data.title}
-            </a>
-            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-          </li>
-        ))}
-      </ul>
-      <a href="/blog" class="view-all">Tutti gli articoli →</a>
-    </section>
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <!-- Recent Posts -->
+      <section class="posts-section">
+        <h2 class="section-title">Ultimi Articoli</h2>
+        <ul class="posts-list">
+          {recentPosts.map(post => (
+            <li class="post-item">
+              <a href={`/blog/${post.slug}`} class="post-link">
+                {post.data.title}
+              </a>
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            </li>
+          ))}
+        </ul>
+        <a href="/blog" class="view-all">Tutti gli articoli →</a>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Newsletter Box -->
+        <div class="sidebar-box newsletter-box">
+          <div class="box-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>Resta aggiornato</span>
+          </div>
+          <p class="box-description">Ricevi una notifica quando pubblico qualcosa di nuovo.</p>
+          <form class="mini-newsletter-form" action="#" method="POST">
+            <input type="email" name="email" placeholder="Email" required />
+            <button type="submit">Iscriviti</button>
+          </form>
+        </div>
+
+        <!-- Tags -->
+        {allTags.length > 0 && (
+          <div class="sidebar-box tags-box">
+            <div class="box-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+              </svg>
+              <span>Tag</span>
+            </div>
+            <div class="tags-list">
+              {allTags.map(tag => (
+                <a href={`/blog?tag=${tag}`} class="tag-link">#{tag}</a>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
 
   </div>
 </Layout>
@@ -139,10 +183,17 @@ const formatDate = (date: Date) => {
     object-fit: cover;
   }
   
+  /* Content Grid */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: var(--space-3xl);
+    margin-bottom: var(--space-3xl);
+  }
+
   /* Posts Section */
   .posts-section {
     max-width: 700px;
-    margin-bottom: var(--space-3xl);
   }
 
   .section-title {
@@ -197,27 +248,130 @@ const formatDate = (date: Date) => {
     color: var(--gold);
   }
 
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .sidebar-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: var(--space-lg);
+  }
+
+  .box-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .box-header svg {
+    color: var(--text-muted);
+  }
+
+  .box-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+  }
+
+  .mini-newsletter-form {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .mini-newsletter-form input {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    color: var(--text-primary);
+  }
+
+  .mini-newsletter-form input:focus {
+    outline: none;
+    border-color: var(--blue-bright);
+  }
+
+  .mini-newsletter-form input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .mini-newsletter-form button {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .mini-newsletter-form button:hover {
+    opacity: 0.9;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .tag-link {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .tag-link:hover {
+    color: var(--blue-bright);
+    background: rgba(60, 128, 194, 0.1);
+  }
+
   /* Responsive */
   @media (max-width: 900px) {
     .hero {
       grid-template-columns: 1fr;
       text-align: center;
     }
-    
+
     .hero-subtitle {
       max-width: none;
     }
-    
+
     .hero-avatar {
       order: -1;
       justify-self: center;
     }
-    
+
     .avatar-wrapper {
       width: 150px;
       height: 150px;
     }
-    
+
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      order: -1;
+    }
   }
   
   @media (max-width: 480px) {
