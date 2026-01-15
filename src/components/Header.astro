@@ -31,6 +31,12 @@ const navItems = [
     </nav>
     
     <div class="header-actions">
+      <button id="search-btn" class="search-btn" aria-label="Cerca">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
       <button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema">
         <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"></circle>
@@ -138,9 +144,10 @@ const navItems = [
   .header-actions {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
-  
+
+  .search-btn,
   .theme-toggle {
     background: none;
     border: none;
@@ -226,6 +233,12 @@ const navItems = [
 
   btn?.addEventListener('click', () => {
     nav?.classList.toggle('open');
+  });
+
+  // Search button
+  const searchBtn = document.getElementById('search-btn');
+  searchBtn?.addEventListener('click', () => {
+    (window as any).openSearch?.();
   });
 
   // Theme toggle
