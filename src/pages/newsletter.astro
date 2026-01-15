@@ -1,0 +1,254 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pastNewsletters = [
+  {
+    date: "2026-01-06",
+    title: "Buon anno! Obiettivi 2026 e riflessioni",
+    description: "Bentornati! In questa prima newsletter dell'anno condivido i miei obiettivi per il 2026 e alcune riflessioni su cosa ha funzionato (e cosa no) l'anno scorso.",
+    slug: "buon-anno-2026"
+  },
+  {
+    date: "2025-12-16",
+    title: "Come insegno i database agli studenti",
+    description: "Questa settimana vi racconto il mio approccio all'insegnamento dei database relazionali e gli errori più comuni che vedo fare.",
+    slug: "insegnare-database"
+  },
+  {
+    date: "2025-12-02",
+    title: "Tool e setup che uso nel 2025",
+    description: "Una panoramica del mio setup di sviluppo: editor, terminale, estensioni e qualche tool che mi semplifica la vita.",
+    slug: "tool-setup-2025"
+  }
+];
+
+const formatDate = (dateStr: string) => {
+  return new Date(dateStr).toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+};
+---
+
+<Layout title="Newsletter" description="Iscriviti alla newsletter di Davide Fella">
+  <div class="container">
+    <article class="newsletter-page">
+      <header class="page-header">
+        <h1>La mia Newsletter.</h1>
+        <p class="description">
+          Ho iniziato questa newsletter per condividere pensieri, link interessanti e aggiornamenti
+          senza la pressione di scrivere un articolo completo. Un modo rilassato per restare in contatto.
+          Inserisci la tua email per riceverla quando esce.
+        </p>
+      </header>
+
+      <div class="signup-box">
+        <form class="signup-form" action="#" method="POST">
+          <input
+            type="email"
+            name="email"
+            placeholder="tu@example.com"
+            required
+            class="email-input"
+          />
+          <button type="submit" class="submit-btn">
+            Iscriviti
+          </button>
+        </form>
+      </div>
+
+      {pastNewsletters.length > 0 && (
+        <section class="past-newsletters">
+          <h2 class="section-title">Edizioni passate</h2>
+          <ul class="newsletter-list">
+            {pastNewsletters.map(item => (
+              <li class="newsletter-item">
+                <time datetime={item.date}>{formatDate(item.date)}</time>
+                <div class="newsletter-content">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <a href={`/newsletter/${item.slug}`} class="read-link">
+                    Leggi la newsletter <span>&rsaquo;</span>
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .newsletter-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.75rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .signup-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: var(--space-lg) var(--space-xl);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .signup-form {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .email-input {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease;
+  }
+
+  .email-input:focus {
+    outline: none;
+    border-color: var(--blue-bright);
+  }
+
+  .email-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .submit-btn {
+    padding: var(--space-md) var(--space-xl);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover {
+    background: var(--blue-bright);
+  }
+
+  /* Past Newsletters */
+  .past-newsletters {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: var(--space-2xl);
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: var(--space-xl);
+  }
+
+  .newsletter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .newsletter-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-xl) 0;
+    border-left: 2px solid var(--border-subtle);
+    padding-left: var(--space-xl);
+    margin-left: var(--space-sm);
+  }
+
+  .newsletter-item time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding-top: 4px;
+  }
+
+  .newsletter-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .newsletter-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .read-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--blue-bright);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .read-link:hover {
+    color: var(--gold);
+  }
+
+  .read-link span {
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+  }
+
+  .read-link:hover span {
+    transform: translateX(3px);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .signup-form {
+      flex-direction: column;
+    }
+
+    .email-input,
+    .submit-btn {
+      width: 100%;
+    }
+
+    .newsletter-item {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .newsletter-item time {
+      font-size: 0.85rem;
+    }
+  }
+</style>

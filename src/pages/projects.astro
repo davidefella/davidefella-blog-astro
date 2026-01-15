@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const sideProjects = [
+  {
+    title: "Mini CLI per GitHub",
+    description: "Un tool da linea di comando per cercare repo su GitHub via API. Scritto in Node.js.",
+    icon: "⌨️",
+    href: "https://github.com/davidefella"
+  },
+  {
+    title: "Budget Planner",
+    description: "Un'app semplice in React per gestire spese e obiettivi finanziari.",
+    icon: "📊",
+    href: "https://github.com/davidefella"
+  },
+  {
+    title: "Agenda Didattica",
+    description: "Un'applicazione per gestire lezioni e appunti dei corsi che tengo.",
+    icon: "📒",
+    href: "https://github.com/davidefella"
+  },
+  {
+    title: "Java Starter Kit",
+    description: "Template per progetti Java con setup didattico pronto all'uso.",
+    icon: "☕",
+    href: "https://github.com/davidefella"
+  }
+];
+
+const didattica = [
+  {
+    title: "Esercizi SQL",
+    description: "Raccolta di esercizi SQL progressivi per i miei corsi di database.",
+    icon: "🗃️",
+    href: "https://github.com/davidefella"
+  },
+  {
+    title: "Java OOP Examples",
+    description: "Esempi commentati di programmazione orientata agli oggetti in Java.",
+    icon: "📚",
+    href: "https://github.com/davidefella"
+  }
+];
+---
+
+<Layout title="Projects" description="Side project e materiale didattico">
+  <div class="container">
+    <header class="page-header">
+      <h1>Projects</h1>
+      <p class="page-description">
+        Side project personali e materiale didattico. Tutto open source su GitHub.
+      </p>
+    </header>
+    
+    <section class="projects-section">
+      <div class="section-header">
+        <h2>Side Projects</h2>
+        <span class="badge">Personali</span>
+      </div>
+      <div class="projects-grid">
+        {sideProjects.map(project => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+    
+    <section class="projects-section">
+      <div class="section-header">
+        <h2>Didattica</h2>
+        <span class="badge">Teaching</span>
+      </div>
+      <div class="projects-grid">
+        {didattica.map(project => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+  }
+  
+  .page-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 500px;
+  }
+  
+  .projects-section {
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .section-header h2 {
+    font-size: 1.35rem;
+    margin: 0;
+  }
+  
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--blue-bright);
+    background: rgba(60, 128, 194, 0.15);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+</style>

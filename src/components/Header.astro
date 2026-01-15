@@ -1,0 +1,285 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
+  { href: '/newsletter', label: 'Newsletter' },
+];
+---
+
+<header class="header">
+  <div class="header-content">
+    <a href="/" class="logo">
+      <span class="logo-icon">
+        <span class="bracket">&lt;</span><span class="df">df</span><span class="bracket">&gt;</span>
+      </span>
+      <span class="logo-text">
+        <span class="name-davide">davide</span><span class="separator">/</span><span class="name-fella">fella</span>
+      </span>
+    </a>
+    
+    <nav class="nav">
+      {navItems.map(item => (
+        <a 
+          href={item.href} 
+          class:list={['nav-link', { active: currentPath.startsWith(item.href) }]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <a href="https://github.com/davidefella" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      </a>
+      <a href="/newsletter" class="btn-subscribe">Iscriviti</a>
+    </div>
+    
+    <button class="mobile-menu-btn" aria-label="Menu" id="mobile-menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  
+  <nav class="mobile-nav" id="mobile-nav">
+    {navItems.map(item => (
+      <a href={item.href} class="mobile-nav-link">{item.label}</a>
+    ))}
+    <a href="/newsletter" class="mobile-nav-link subscribe">Iscriviti</a>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 20, 25, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .header-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-md) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+  }
+  
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.02);
+  }
+  
+  .logo-icon {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .logo-text {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .bracket { color: var(--blue-bright); }
+  .df { color: var(--gold); }
+  .name-davide { color: var(--gold); }
+  .separator { color: var(--blue-bright); }
+  .name-fella { color: var(--blue-bright); }
+  
+  /* Nav */
+  .nav {
+    display: flex;
+    gap: var(--space-lg);
+  }
+  
+  .nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: var(--space-xs) 0;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--text-primary);
+  }
+  
+  /* Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: var(--space-sm);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .theme-toggle:hover {
+    color: var(--text-primary);
+  }
+
+  /* Mostra sole in dark mode, luna in light mode */
+  .icon-moon { display: none; }
+  .icon-sun { display: block; }
+
+  :global(.light) .icon-moon { display: block; }
+  :global(.light) .icon-sun { display: none; }
+
+  .social-link {
+    color: var(--text-secondary);
+    padding: var(--space-sm);
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .social-link:hover {
+    color: var(--text-primary);
+  }
+  
+  .btn-subscribe {
+    background: var(--gold);
+    color: var(--bg-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-subscribe:hover {
+    background: var(--gold-dim);
+    color: var(--bg-primary);
+    transform: translateY(-1px);
+  }
+  
+  /* Mobile */
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+  }
+  
+  .mobile-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.2s ease;
+  }
+  
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 0 var(--space-xl) var(--space-lg);
+    gap: var(--space-sm);
+  }
+  
+  .mobile-nav-link {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .mobile-nav-link.subscribe {
+    color: var(--gold);
+    border-bottom: none;
+    margin-top: var(--space-sm);
+  }
+  
+  @media (max-width: 768px) {
+    .nav,
+    .header-actions {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: flex;
+    }
+    
+    .mobile-nav.open {
+      display: flex;
+    }
+    
+    .logo-text {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const nav = document.getElementById('mobile-nav');
+
+  btn?.addEventListener('click', () => {
+    nav?.classList.toggle('open');
+  });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+
+  // Check saved preference or system preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+    root.classList.add('light');
+  }
+
+  themeToggle?.addEventListener('click', () => {
+    root.classList.toggle('light');
+    const isLight = root.classList.contains('light');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>

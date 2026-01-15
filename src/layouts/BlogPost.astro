@@ -1,0 +1,180 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    date: string;
+    description: string;
+    tags?: string[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('it-IT', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <article class="container">
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime={frontmatter.date}>{formattedDate}</time>
+        {frontmatter.tags && frontmatter.tags.length > 0 && (
+          <div class="tags">
+            {frontmatter.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      <h1>{frontmatter.title}</h1>
+      
+      <p class="post-description">{frontmatter.description}</p>
+    </header>
+    
+    <div class="post-content">
+      <slot />
+    </div>
+    
+    <footer class="post-footer">
+      <a href="/blog" class="back-link">← Torna al blog</a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  article {
+    max-width: var(--content-width);
+  }
+  
+  .post-header {
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  
+  time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  
+  .tags {
+    display: flex;
+    gap: var(--space-sm);
+  }
+  
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--blue-bright);
+    background: rgba(60, 128, 194, 0.15);
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+  
+  .post-description {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  /* Post content */
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  
+  .post-content :global(h2) {
+    font-size: 1.5rem;
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-lg);
+    color: var(--gold);
+  }
+  
+  .post-content :global(h3) {
+    font-size: 1.25rem;
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+  }
+  
+  .post-content :global(p) {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .post-content :global(a) {
+    color: var(--blue-bright);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  
+  .post-content :global(a:hover) {
+    color: var(--gold);
+  }
+  
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin-bottom: var(--space-lg);
+    padding-left: var(--space-xl);
+  }
+  
+  .post-content :global(li) {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .post-content :global(blockquote) {
+    border-left: 3px solid var(--gold);
+    padding-left: var(--space-lg);
+    margin: var(--space-xl) 0;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+  
+  .post-content :global(img) {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: var(--space-xl) 0;
+  }
+  
+  .post-content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+    margin: var(--space-2xl) 0;
+  }
+  
+  /* Footer */
+  .post-footer {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-subtle);
+  }
+  
+  .back-link {
+    font-size: 0.95rem;
+    color: var(--blue-bright);
+    font-weight: 500;
+  }
+  
+  .back-link:hover {
+    color: var(--gold);
+  }
+</style>

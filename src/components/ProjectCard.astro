@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  href?: string;
+}
+
+const { title, description, icon, href = '#' } = Astro.props;
+---
+
+<a href={href} class="project-card" target="_blank" rel="noopener">
+  <div class="project-icon">{icon}</div>
+  <div class="project-info">
+    <h4 class="project-title">{title}</h4>
+    <p class="project-description">{description}</p>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .project-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-light);
+    transform: translateY(-2px);
+  }
+  
+  .project-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  .project-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .project-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-xs) 0;
+  }
+  
+  .project-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+</style>

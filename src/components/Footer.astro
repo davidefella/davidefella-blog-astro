@@ -1,0 +1,88 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <span class="footer-logo">
+        <span class="bracket">&lt;</span><span class="df">df</span><span class="bracket">/&gt;</span>
+      </span>
+      <span class="copyright">© {currentYear} Davide Fella</span>
+    </div>
+    
+    <div class="footer-links">
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/about">About</a>
+      <a href="/newsletter">Newsletter</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: var(--space-xl) 0;
+    margin-top: auto;
+  }
+  
+  .footer-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+  
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+  
+  .footer-logo {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .bracket { color: var(--blue-bright); }
+  .df { color: var(--gold); }
+  
+  .copyright {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+  
+  .footer-links a {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-links a:hover {
+    color: var(--text-primary);
+  }
+  
+  @media (max-width: 600px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
