@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import davidePhoto from '../assets/images/davide-fella.jpg';
 
 // Prendi gli ultimi 5 post
 const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -33,7 +35,7 @@ const formatDate = (date: Date) => {
       
       <div class="hero-avatar">
         <div class="avatar-wrapper">
-          <img src="/avatar.svg" alt="Davide Fella" />
+          <Image src={davidePhoto} alt="Davide Fella" width={400} height={400} />
         </div>
       </div>
     </section>

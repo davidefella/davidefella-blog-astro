@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import NewsletterCTA from '../components/NewsletterCTA.astro';
 
 interface Props {
   frontmatter: {
@@ -41,7 +42,9 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('it-IT', {
     <div class="post-content">
       <slot />
     </div>
-    
+
+    <NewsletterCTA />
+
     <footer class="post-footer">
       <a href="/blog" class="back-link">← Torna al blog</a>
     </footer>

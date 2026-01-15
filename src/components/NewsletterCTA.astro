@@ -1,0 +1,122 @@
+---
+// Newsletter CTA component - shown at the end of blog posts
+---
+
+<section class="newsletter-cta">
+  <div class="newsletter-content">
+    <h2>Iscriviti alla newsletter.</h2>
+    <p>Ricevi aggiornamenti settimanali su articoli e pensieri dal mondo tech. Niente spam, puoi cancellarti quando vuoi.</p>
+
+    <form class="newsletter-form" action="#" method="POST">
+      <input
+        type="email"
+        name="email"
+        placeholder="La tua email"
+        required
+        class="email-input"
+      />
+      <button type="submit" class="submit-btn">Iscriviti</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .newsletter-cta {
+    margin-top: var(--space-3xl);
+    padding: var(--space-2xl) var(--space-3xl);
+    background: linear-gradient(135deg, rgba(25, 30, 40, 1) 0%, rgba(35, 40, 55, 1) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .newsletter-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    right: -10%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(120, 90, 180, 0.2) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .newsletter-content {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+  }
+
+  .newsletter-content h2 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: #fff;
+  }
+
+  .newsletter-content > p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .email-input {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    background: rgba(15, 20, 28, 0.8);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease;
+  }
+
+  .email-input:focus {
+    outline: none;
+    border-color: var(--blue-bright);
+  }
+
+  .email-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .submit-btn {
+    padding: var(--space-md) var(--space-xl);
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover {
+    background: var(--blue-bright);
+  }
+
+  @media (max-width: 600px) {
+    .newsletter-cta {
+      padding: var(--space-xl);
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .submit-btn {
+      width: 100%;
+    }
+  }
+</style>

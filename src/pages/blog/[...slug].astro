@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import NewsletterCTA from '../../components/NewsletterCTA.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -45,6 +46,8 @@ const formatDate = (date: Date) => {
       <div class="post-content">
         <Content />
       </div>
+
+      <NewsletterCTA />
 
       <footer class="post-footer">
         <a href="/blog" class="back-link">&larr; Torna al blog</a>
