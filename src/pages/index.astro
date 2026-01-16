@@ -126,14 +126,12 @@ const formatDate = (date: Date) => {
     line-height: 1.2;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
-    white-space: nowrap;
   }
-  
+
   .hero-subtitle {
     font-size: 1.15rem;
     color: var(--text-secondary);
     margin-bottom: var(--space-xl);
-    white-space: nowrap;
   }
   
   .btn-primary {
@@ -375,14 +373,47 @@ const formatDate = (date: Date) => {
       order: -1;
     }
   }
-  
-  @media (max-width: 480px) {
+
+  @media (max-width: 600px) {
     .hero-title {
       font-size: 1.75rem;
     }
-    
+
     .hero-wave {
+      font-size: 1.35rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .avatar-wrapper {
+      width: 120px;
+      height: 120px;
+    }
+
+    .mini-newsletter-form {
+      flex-direction: column;
+    }
+
+    .mini-newsletter-form input,
+    .mini-newsletter-form button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .hero-title {
       font-size: 1.5rem;
+    }
+
+    .hero-wave {
+      font-size: 1.2rem;
+    }
+
+    .btn-primary {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

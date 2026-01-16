@@ -176,8 +176,53 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('it-IT', {
     color: var(--blue-bright);
     font-weight: 500;
   }
-  
+
   .back-link:hover {
     color: var(--gold);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .post-description {
+      font-size: 1rem;
+    }
+
+    .post-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .post-content {
+      font-size: 1rem;
+    }
+
+    .post-content :global(h2) {
+      font-size: 1.3rem;
+    }
+
+    .post-content :global(h3) {
+      font-size: 1.1rem;
+    }
+
+    .post-content :global(pre) {
+      padding: var(--space-md);
+      font-size: 0.8rem;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .tags {
+      flex-wrap: wrap;
+    }
   }
 </style>

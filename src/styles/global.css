@@ -199,3 +199,18 @@ pre code {
 .animate-in {
   animation: fadeInUp 0.5s ease forwards;
 }
+
+/* Responsive utilities */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}

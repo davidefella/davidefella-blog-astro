@@ -157,4 +157,27 @@ import Layout from '../layouts/Layout.astro';
   .tech-icon {
     font-size: 1.25rem;
   }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .about-header h1 {
+      font-size: 2rem;
+    }
+
+    .intro {
+      font-size: 1.05rem;
+    }
+
+    .about-body {
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
