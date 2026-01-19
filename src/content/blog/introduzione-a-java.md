@@ -1,5 +1,5 @@
 ---
-title: "Introduzione a Java"
+title: "[TEST] Introduzione a Java"
 description: "Una panoramica sul linguaggio di programmazione Java"
 date: 2026-01-12
 tags: ["java", "programmazione"]

@@ -1,5 +1,5 @@
 ---
-title: "Git: controllo di versione distribuito"
+title: "[TEST] Git: controllo di versione distribuito"
 description: "Cos'è Git e perché ogni sviluppatore dovrebbe conoscerlo"
 date: 2026-01-03
 tags: ["git", "strumenti"]
