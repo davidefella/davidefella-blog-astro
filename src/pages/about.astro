@@ -2,203 +2,67 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="About" description="Chi è Davide Fella - sviluppatore backend e docente">
+<Layout title="About" description="Chi è Davide Fella">
   <div class="container">
-    <article class="about-content">
-      <header class="about-header">
-        <h1>About</h1>
-        <div class="wip-notice">
-          <span class="wip-icon">🚧</span>
-          <span>Work in progress — sto ancora sistemando questa pagina!</span>
-        </div>
-      </header>
-      
-      <div class="about-body">
-        <p class="intro">
-          Mi chiamo <strong>Davide Fella</strong>, sono uno sviluppatore backend e docente di programmazione.
-          Lavoro principalmente con <span class="highlight">Java</span> e tutto l'ecosistema enterprise 
-          che ci gira intorno.
-        </p>
-        
-        <p>
-          Da qualche anno insegno programmazione — corsi su Java, Python, SQL e i fondamenti dello sviluppo software. 
-          Mi piace spiegare concetti complessi in modo semplice, anche se a volte richiede metafore un po' strane.
-        </p>
-        
-        <h2>Cosa faccio</h2>
-        
-        <p>
-          Di giorno sviluppo backend per sistemi enterprise. Il mio focus è su architetture pulite, 
-          codice manutenibile, e soluzioni che funzionano nel mondo reale — non solo sulla carta.
-        </p>
-        
-        <p>
-          Quando non scrivo codice per lavoro, preparo materiale didattico, sperimento con side project, 
-          e scrivo su questo blog. L'obiettivo è documentare quello che imparo e condividerlo con chi 
-          sta affrontando gli stessi problemi.
-        </p>
-        
-        <h2>Perché questo blog</h2>
-        
-        <p>
-          Volevo uno spazio mio dove scrivere senza filtri corporate e senza il tono "LinkedIn influencer". 
-          Qui trovi appunti tecnici, riflessioni sulla didattica, e opinioni sul mondo dev — 
-          tutto scritto da me, con il mio stile.
-        </p>
-        
-        <h2>Stack & Tools</h2>
-        
-        <p>
-          Le tecnologie con cui lavoro più spesso:
-        </p>
-        
-        <div class="tech-grid">
-          <div class="tech-item">
-            <span class="tech-icon">☕</span>
-            <span>Java / Spring Boot</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">🗃️</span>
-            <span>PostgreSQL / SQL</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">🐍</span>
-            <span>Python</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">🐳</span>
-            <span>Docker</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">⚡</span>
-            <span>Node.js</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">🔧</span>
-            <span>Git / GitHub</span>
-          </div>
-        </div>
-        
-        <h2>Contatti</h2>
-        
-        <p>
-          Mi trovi su <a href="https://github.com/davidefella" target="_blank" rel="noopener">GitHub</a> 
-          dove pubblico progetti e materiale didattico.
-        </p>
-        
-        <p>
-          Se vuoi restare aggiornato sui nuovi articoli, 
-          <a href="/newsletter">iscriviti alla newsletter</a>.
-        </p>
+    <div class="wip-page">
+      <div class="wip-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 20h20"></path>
+          <path d="M5 20V8.5L12 4l7 4.5V20"></path>
+          <path d="M9 20v-6h6v6"></path>
+          <path d="M9 11h.01"></path>
+          <path d="M15 11h.01"></path>
+        </svg>
       </div>
-    </article>
+      <h1>About</h1>
+      <p class="wip-text">Work in progress</p>
+      <p class="wip-sub">Sto ancora costruendo questa pagina, torna presto!</p>
+    </div>
   </div>
 </Layout>
 
 <style>
-  .about-content {
-    max-width: var(--content-width);
-  }
-  
-  .about-header {
-    margin-bottom: var(--space-2xl);
-  }
-
-  .about-header h1 {
-    font-size: 2.5rem;
-  }
-
-  .wip-notice {
-    display: inline-flex;
+  .wip-page {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
-    margin-top: var(--space-md);
-    padding: var(--space-sm) var(--space-md);
-    background: rgba(231, 175, 42, 0.1);
-    border: 1px solid var(--gold);
-    border-radius: 6px;
-    font-size: 0.9rem;
-    color: var(--gold);
+    justify-content: center;
+    text-align: center;
+    min-height: 50vh;
+    gap: var(--space-md);
   }
 
   .wip-icon {
-    font-size: 1rem;
-  }
-  
-  .about-body {
-    font-size: 1.05rem;
-    line-height: 1.8;
-  }
-  
-  .intro {
-    font-size: 1.2rem;
-    line-height: 1.7;
-  }
-  
-  .highlight {
-    color: var(--blue-bright);
-    font-weight: 500;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    margin-top: var(--space-3xl);
-    margin-bottom: var(--space-lg);
     color: var(--gold);
-  }
-  
-  a {
-    color: var(--blue-bright);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  
-  a:hover {
-    color: var(--gold);
-  }
-  
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: var(--space-md);
-    margin: var(--space-lg) 0;
-  }
-  
-  .tech-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md);
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    font-size: 0.95rem;
-  }
-  
-  .tech-icon {
-    font-size: 1.25rem;
+    opacity: 0.8;
   }
 
-  /* Responsive */
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+
+  .wip-text {
+    font-size: 1.25rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .wip-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
   @media (max-width: 600px) {
-    .about-header h1 {
+    h1 {
       font-size: 2rem;
     }
 
-    .intro {
-      font-size: 1.05rem;
-    }
-
-    .about-body {
-      font-size: 1rem;
-    }
-
-    h2 {
-      font-size: 1.3rem;
-    }
-
-    .tech-grid {
-      grid-template-columns: 1fr;
+    .wip-icon svg {
+      width: 60px;
+      height: 60px;
     }
   }
 </style>
