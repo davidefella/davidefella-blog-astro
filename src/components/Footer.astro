@@ -4,10 +4,18 @@ const currentYear = new Date().getFullYear();
 
 <footer class="footer">
   <div class="footer-content">
-    <span class="footer-logo">
-      <span class="bracket">&lt;</span><span class="df">df</span><span class="bracket">/&gt;</span>
-    </span>
-    <span class="copyright">© {currentYear} Davide Fella</span>
+    <div class="footer-links">
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+      <a href="/newsletter">Newsletter</a>
+    </div>
+
+    <div class="footer-right">
+      <span class="footer-logo">
+        <span class="bracket">&lt;</span><span class="df">df</span><span class="bracket">/&gt;</span>
+      </span>
+      <span class="copyright">© {currentYear} Davide Fella</span>
+    </div>
   </div>
 </footer>
 
@@ -23,7 +31,29 @@ const currentYear = new Date().getFullYear();
     margin: 0 auto;
     padding: 0 var(--space-xl);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .footer-links a {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--text-primary);
+  }
+
+  .footer-right {
+    display: flex;
     align-items: center;
     gap: var(--space-lg);
   }
@@ -40,5 +70,22 @@ const currentYear = new Date().getFullYear();
   .copyright {
     color: var(--text-muted);
     font-size: 0.875rem;
+  }
+
+  @media (max-width: 600px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-links {
+      order: 2;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-right {
+      order: 1;
+    }
   }
 </style>
