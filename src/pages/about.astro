@@ -3,66 +3,101 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About" description="Chi è Davide Fella">
-  <div class="container">
-    <div class="wip-page">
-      <div class="wip-icon">
-        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 20h20"></path>
-          <path d="M5 20V8.5L12 4l7 4.5V20"></path>
-          <path d="M9 20v-6h6v6"></path>
-          <path d="M9 11h.01"></path>
-          <path d="M15 11h.01"></path>
-        </svg>
-      </div>
-      <h1>About</h1>
-      <p class="wip-text">Work in progress</p>
-      <p class="wip-sub">Sto ancora costruendo questa pagina, torna presto!</p>
+  <article class="container about-page">
+    <header class="about-header">
+      <h1>Hello World 🌍</h1>
+    </header>
+
+    <div class="about-content">
+      <p>Ciao, sono Davide! Software developer millennials, questo è il mio (piccolo) angolo di internet. Dopo anni passati a scorrere il web e a chiedermi se davvero tutti sono <em>"thrilled to announce"</em> qualcosa ogni settimana, ho deciso che avevo bisogno di uno spazio diverso.</p>
+
+      <h2>Un blog nel 2026?</h2>
+
+      <p>Aprire un blog nel 2026 può sembrare molto vintage e probabilmente lo è, ma la verità è che cercavo un posto dove poter:</p>
+
+      <ul>
+        <li><strong>Scrivere appunti</strong> su cose che sto studiando o sperimentando, senza la pressione di dover sembrare un thought leader</li>
+        <li><strong>Pensare ad alta voce scritta</strong>, una sorta di rubber duck digitale, ma in formato blog</li>
+        <li><strong>Condividere cose</strong> che mi colpiscono, mi incuriosiscono e che vale la pena salvare in archivio</li>
+        <li><strong>Non dovermi preoccupare dell'algoritmo</strong> — niente like, niente reach, niente engagement ottimizzato..un flow di pensieri as-is con un dress code casual</li>
+      </ul>
+
+      <h2>Cosa aspettarsi</h2>
+
+      <p>Qui ci troverai un po' di tutto: appunti su tecnologie che sto esplorando, riflessioni sullo sviluppo software e del mondo della tecnologia, qualche rant occasionale sui vari framework e magari qualche divagazione non-tech quando mi gira.</p>
+
+      <p>Come ogni buon progetto, questo blog è in uno stato perpetuo di "quasi finito". Se qualcosa sembra rotto, incompleto, o esteticamente discutibile... è una feature, non un bug. Ci sto lavorando. Probabilmente. Forse.</p>
+
+      <h2>TL;DR</h2>
+
+      <p>Ho aperto un blog perché volevo uno spazio mio, senza algoritmi, senza cravatte digitali, senza la pressione di dover performare. Solo pensieri, appunti, e qualche battuta discutibile.</p>
+
+      <p>Se ti va, seguimi in questo esperimento. Nel peggiore dei casi, avrai qualcosa da leggere mentre aspetti che la pipeline di CI/CD finisca.</p>
+
+      <p>A presto 👋</p>
     </div>
-  </div>
+  </article>
 </Layout>
 
 <style>
-  .wip-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 50vh;
-    gap: var(--space-md);
+  article {
+    max-width: 800px;
   }
 
-  .wip-icon {
-    color: var(--gold);
-    opacity: 0.8;
+  .about-header {
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    line-height: 1.2;
     margin: 0;
   }
 
-  .wip-text {
-    font-size: 1.25rem;
+  .about-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .about-content h2 {
+    font-size: 1.5rem;
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-lg);
     color: var(--gold);
-    font-weight: 600;
-    margin: 0;
   }
 
-  .wip-sub {
-    color: var(--text-muted);
-    font-size: 1rem;
-    margin: 0;
+  .about-content p {
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-content ul {
+    margin-bottom: var(--space-lg);
+    padding-left: var(--space-xl);
+  }
+
+  .about-content li {
+    margin-bottom: var(--space-sm);
   }
 
   @media (max-width: 600px) {
     h1 {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
 
-    .wip-icon svg {
-      width: 60px;
-      height: 60px;
+    .about-content {
+      font-size: 1rem;
+    }
+
+    .about-content h2 {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.5rem;
     }
   }
 </style>
