@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const apiKey = import.meta.env.BUTTONDOWN_API_KEY;
+    const apiKey = process.env.BUTTONDOWN_API_KEY;
     if (!apiKey) {
       return new Response(
         JSON.stringify({ error: 'Servizio newsletter non configurato.' }),
